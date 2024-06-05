@@ -8,6 +8,13 @@
   </head>
 
   <body>
+<!-- icon for our sidebar where when you press the sidebar appears our disappears-->
+    <div class="sidebar-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <div class="sidebar">
       <!-- HEADER-->
       <div class="sidebar-header">
@@ -20,33 +27,37 @@
         <!-- help drop down-->
 
         <div class="sidebar-item">
-          <button class="side-bar-button" class="dropdown-btn-help">
-            Help
-          </button>
+          <div class="dropdown-content">
+            <button id="help" class="side-bar-button">Help</button>
 
-          <!-- I want these two drop-downs to be interactive- meaning when the user presses for an email, it automatically takes creates an email from the users email to send to this specific email and for the phone number to copy the number automatically after clicked on (search about i)-->
+            <!-- I want these two drop-downs to be interactive- meaning when the user presses for an email, it automatically takes creates an email from the users email to send to this specific email and for the phone number to copy the number automatically after clicked on (search about i)-->
 
-          <div class="dropped">
-            <button class="side-bar-button" class="dropdown-item">
-              email: todo-list@help.com
-            </button>
+          
+              <button id="email"
+                onclick="copyEmail()">
+                todo-list@help.com
+              </button>
 
-            <button class="side-bar-button" class="dropdown-item">
-              Phone: +123456789
-            </button>
-          </div>
+              <button id="phone"
+                onclick="copyPhone()"
+              >
+                +123456789
+              </button>
+         
+        </div>
+      </div>
+
+      <!-- choosing the theme of the page-->
+      <div class="sidebar-item">
+        <div class="dropdown-content">
+        <button class="side-bar-button" id="theme">Theme</button>
+       
+          <button id="black">Black</button>
+          <button id="white">White</button>
         </div>
 
-        <!-- choosing the theme of the page-->
         <div class="sidebar-item">
-          <button class="side-bar-button" class="dropdown-btn">Theme</button>
-          <div class="dropdown-container">
-            <button class="side-bar-button" id="black-theme">Black</button>
-            <button class="side-bar-button" id="white-theme">White</button>
-          </div>
-        </div>
-        <div class="sidebar-item">
-          <button class="side-bar-button" class="home-btn">Home</button>
+          <button class="side-bar-button" id="home-btn">Home</button>
         </div>
       </div>
     </div>
@@ -56,5 +67,7 @@
     </div>
 
     <script src="script.js"></script>
+
+
   </body>
 </html>

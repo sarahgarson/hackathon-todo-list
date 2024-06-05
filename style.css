@@ -12,6 +12,31 @@ body {
   width: 250px;
   height: 100vh;
   background-color: rgb(255, 255, 255, 0.3);
+  position: fixed;
+  top: 0;
+  left: -250px; /* Start hidden */
+  transition: left 0.3s ease;
+}
+
+.sidebar.open {
+  left: 0; /* Show when open */
+}
+
+.sidebar-icon {
+  position: fixed;
+  top: 10px;
+  left: 0px;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.sidebar-icon span {
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: #716f6f;
+  margin-bottom: 5px;
 }
 
 .sidebar-header {
@@ -23,7 +48,7 @@ body {
 
 .side-bar-button {
   padding: 10px;
-  margin-top: 30px;
+  margin-top: 45px;
   font-size: 110%;
   background-color: rgb(119, 118, 118, 0.5);
   color: whitesmoke;
@@ -31,15 +56,66 @@ body {
   border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   margin-left: 9%;
-  width: 85%;
+  width: 200px;
 }
 
-dropdown-container {
-  display: none;
+.side-bar-button:hover {
+  background-color: #747474;
+  cursor: pointer;
+}
+
+/*creating the dropdown buttons*/
+
+.dropdown-content {
+  position: relative;
+  display: inline-block; /*makes the dropdown button appear to the right side instead*/
+}
+
+#email,
+#black {
   position: absolute;
-  background-color: rgb(125, 108, 96);
+  top: 120%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(0, 0, 0, 0.6);
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
 }
 
-.dropdown-item:hover {
-  background-color: #5f0000;
+#phone {
+  position: absolute;
+  top: 200%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(0, 0, 0, 0.6);
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
+}
+
+#white {
+  position: absolute;
+  top: 200%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(255, 255, 255, 0.6);
+  padding: 10px;
+  color: black;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
 }
