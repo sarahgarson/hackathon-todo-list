@@ -96,3 +96,35 @@ function closeHelpButton() {
 themeButton.addEventListener("click", function () {
   closeHelpButton();
 });
+
+//making funtions so the user can click on the email or phone number and automatically have them copied:
+
+//had added onclick in the html file and was having the alert popping twice, so I deleted it and left only this here in js
+
+email.addEventListener(`click`, () => {
+  let emailText = document.getElementById("email").textContent.trim();
+  navigator.clipboard.writeText(emailText);
+  alert(`The email has been copied successfully`);
+});
+
+phone.addEventListener(`click`, () => {
+  let phoneText = document.getElementById("phone").textContent.trim();
+  navigator.clipboard.writeText(phoneText);
+  alert(`The phone number has been copied successfully`);
+});
+
+//theme black and white part
+
+// no need to call black and white buttons again since we did it in the beginning of the code
+
+//taking the black button: when clicked on it adds the black theme
+black.addEventListener("click", () => {
+  document.body.classList.remove("white-theme");
+  document.body.classList.add("black-theme");
+});
+
+//taking the black button: when clicked on it adds the white theme
+white.addEventListener("click", () => {
+  document.body.classList.remove("black-theme");
+  document.body.classList.add("white-theme");
+});

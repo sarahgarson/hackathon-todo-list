@@ -4,6 +4,18 @@
   padding: 0;
 }
 
+/* these two themes below are for the different themes for the whole webpage*/
+.black-theme {
+  background-color: rgb(15, 14, 14);
+  color: white;
+}
+
+.white-theme {
+  background-color: rgb(223, 220, 220);
+  color: grey;
+}
+
+/*but this one is kind og the default color for the page, before the user decides to choose or white or black, this is the color the appears as soon as we open the todo list page*/
 body {
   background-color: rgb(223, 220, 220);
 }
@@ -41,7 +53,7 @@ body {
 
 .sidebar-header {
   text-align: center;
-  padding-top: 15%;
+  padding-top: 35%;
   padding-bottom: 10%;
   color: grey;
 }
