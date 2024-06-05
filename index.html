@@ -6,7 +6,55 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Hackathon Project: Page Two, Todo List</title>
   </head>
+
   <body>
+    <div class="sidebar">
+      <!-- HEADER-->
+      <div class="sidebar-header">
+        <h1>Todo List</h1>
+      </div>
+
+      <!-- CONTENT PART-->
+
+      <div class="sidebar-content">
+        <!-- help drop down-->
+
+        <div class="sidebar-item">
+          <button class="side-bar-button" class="dropdown-btn-help">
+            Help
+          </button>
+
+          <!-- I want these two drop-downs to be interactive- meaning when the user presses for an email, it automatically takes creates an email from the users email to send to this specific email and for the phone number to copy the number automatically after clicked on (search about i)-->
+
+          <div class="dropped">
+            <button class="side-bar-button" class="dropdown-item">
+              email: todo-list@help.com
+            </button>
+
+            <button class="side-bar-button" class="dropdown-item">
+              Phone: +123456789
+            </button>
+          </div>
+        </div>
+
+        <!-- choosing the theme of the page-->
+        <div class="sidebar-item">
+          <button class="side-bar-button" class="dropdown-btn">Theme</button>
+          <div class="dropdown-container">
+            <button class="side-bar-button" id="black-theme">Black</button>
+            <button class="side-bar-button" id="white-theme">White</button>
+          </div>
+        </div>
+        <div class="sidebar-item">
+          <button class="side-bar-button" class="home-btn">Home</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Your main content here -->
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
