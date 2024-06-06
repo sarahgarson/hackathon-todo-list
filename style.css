@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* these two themes below are for the different themes for the whole webpage*/
+.black-theme {
+  background-color: rgb(15, 14, 14);
+  color: white;
+}
+
+.white-theme {
+  background-color: rgb(223, 220, 220);
+  color: grey;
+}
+
+/*but this one is kind og the default color for the page, before the user decides to choose or white or black, this is the color the appears as soon as we open the todo list page*/
+body {
+  background-color: rgb(223, 220, 220);
+}
+
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: rgb(255, 255, 255, 0.3);
+  position: fixed;
+  top: 0;
+  left: -250px; /* Start hidden */
+  transition: left 0.3s ease;
+}
+
+.sidebar.open {
+  left: 0; /* Show when open */
+}
+
+.sidebar-icon {
+  position: fixed;
+  top: 10px;
+  left: 0px;
+  cursor: pointer;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.sidebar-icon span {
+  display: block;
+  width: 35px;
+  height: 5px;
+  background-color: #716f6f;
+  margin-bottom: 5px;
+}
+
+.sidebar-header {
+  text-align: center;
+  padding-top: 35%;
+  padding-bottom: 10%;
+  color: grey;
+}
+
+.side-bar-button {
+  padding: 10px;
+  margin-top: 45px;
+  font-size: 110%;
+  background-color: rgb(119, 118, 118, 0.5);
+  color: whitesmoke;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+}
+
+.side-bar-button:hover {
+  background-color: #747474;
+  cursor: pointer;
+}
+
+/*creating the dropdown buttons*/
+
+.dropdown-content {
+  position: relative;
+  display: inline-block; /*makes the dropdown button appear to the right side instead*/
+}
+
+#email,
+#black {
+  position: absolute;
+  top: 120%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(0, 0, 0, 0.6);
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
+}
+
+#phone {
+  position: absolute;
+  top: 200%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(0, 0, 0, 0.6);
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
+}
+
+#white {
+  position: absolute;
+  top: 200%;
+  left: 100%; /*also this line was updated so the dropdown apear to the right side */
+  display: none;
+  background-color: rgb(255, 255, 255, 0.6);
+  padding: 10px;
+  color: black;
+  border: 0px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  width: 200px;
+  font-size: 110%;
+}
