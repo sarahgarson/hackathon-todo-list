@@ -129,6 +129,7 @@ white.addEventListener("click", () => {
   document.body.classList.add("white-theme");
 });
 
+
 //GREETING BOX PART OF THE CODE:
 
 const greetingBox = document.getElementById("greeting-box");
@@ -204,3 +205,4 @@ function search() {
     }
   }
 }
+
