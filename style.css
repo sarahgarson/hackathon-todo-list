@@ -131,3 +131,85 @@ body {
   width: 200px;
   font-size: 110%;
 }
+
+
+/*CURRENT DATE OF THE DAY STYLING*/
+
+#current-date {
+  font-size: 20px;
+  margin-left: 21%;
+  color: #747474;
+  margin-top: 5%;
+}
+
+/*STYLING FOR THE GREETING BOX*/
+
+#greeting-box {
+  background-color: #f2f2f2;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: black;
+  width: 30%;
+  border-radius: 10px;
+  margin-left: 20%;
+  margin-top: 2%;
+  font-size: 140%;
+  color: rgb(100, 98, 98);
+}
+
+/*STYLING FOR THE SEARCH BOX*/
+
+#search-container {
+  margin-top: 40px;
+  margin-left: 20%;
+  position: relative; /* wrote the position and display so my font awesome icon could appear on top of my search bar*/
+  display: inline-block;
+  width: 50%;
+}
+
+#search-input {
+  width: 50%;
+  font-size: 110%;
+  border-radius: 10px;
+  padding-left: 40px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border: 0px;
+  color: #757575;
+  background-color: rgb(255, 255, 255, 0.6);
+  outline: none; /*so the blue deafault line wont appear*/
+}
+
+/*added that instead when the mouse clicks on the search bar the border color becomes grey 
+used html and css only, no need for JS*/
+#search-input:focus {
+  outline: none;
+  border: 2px solid rgb(166, 161, 161);
+}
+
+#search-results {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#search-results li {
+  padding: 5px;
+  background-color: #cccccc;
+  margin-bottom: 5px;
+}
+
+/*The .search-icon class is absolutely positioned inside the container to appear as a placeholder icon inside the input field.
+*/
+.fa-magnifying-glass {
+  color: grey;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(
+    -50%
+  ); /*The translateY function moves an element along the Y-axis (vertically). The value -50% moves the element up by 50% of its own height.*/
+  pointer-events: none; /* Prevent the icon from blocking input field interaction */
+}
+

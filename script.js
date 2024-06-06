@@ -128,3 +128,81 @@ white.addEventListener("click", () => {
   document.body.classList.remove("black-theme");
   document.body.classList.add("white-theme");
 });
+
+
+//GREETING BOX PART OF THE CODE:
+
+const greetingBox = document.getElementById("greeting-box");
+greetingBox.textContent = getGreeting();
+
+//explanation I found on google:
+/*new Date(): This creates a new Date object, which represents the current date and time.
+
+getHours(): This is a method of the Date object that returns the current hour (in 24-hour format) based on the system's local time. It returns a number between 0 and 23, where 0 represents midnight and 23 represents 11 PM.*/
+
+function getGreeting() {
+  const currentHour = new Date().getHours();
+
+  if (currentHour >= 5 && currentHour < 12) {
+    return "Good morning";
+  } else if (currentHour >= 12 && currentHour < 18) {
+    return "Good afternoon";
+  } else if (currentHour >= 18 && currentHour < 20) {
+    return "Good evening";
+  } else {
+    return "Good night";
+  }
+}
+
+//CURRENT DATE DISPLAY PART:
+
+let currentDateElement = document.getElementById("current-date");
+
+function updateCurrentDate() {
+  let currentDate = new Date(); //the same we used to write the greeting part, only without the hour.
+  let options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+  };
+  const formattedDate = currentDate.toLocaleDateString("en-IL", options);
+  currentDateElement.textContent = formattedDate;
+}
+
+updateCurrentDate();
+
+//search bar part of the code:
+
+let searchInput = document.getElementById("search-input");
+let searchResults = document.getElementById("search-results");
+
+searchInput.addEventListener("input", () => {
+  let searchTerm = searchInput.value.toLowerCase();
+  let searchItems = document.getElementsByTagName("li");
+});
+
+//to make the search works when I press my Enter key:
+
+searchInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // Prevent the form from submitting
+    searchInput.blur(); // Remove focus from the input field
+    search(); // Trigger the search function
+  }
+});
+
+function search() {
+  const searchTerm = searchInput.value.toLowerCase();
+  const searchItems = document.getElementsByTagName("li");
+
+  for (let i = 0; i < searchItems.length; i++) {
+    let itemText = searchItems[i].textContent.toLowerCase();
+    if (itemText.includes(searchTerm)) {
+      searchItems[i].style.display = "block";
+    } else {
+      searchItems[i].style.display = "none";
+    }
+  }
+}
+
