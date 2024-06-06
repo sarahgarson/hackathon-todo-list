@@ -129,7 +129,6 @@ white.addEventListener("click", () => {
   document.body.classList.add("white-theme");
 });
 
-
 //GREETING BOX PART OF THE CODE:
 
 const greetingBox = document.getElementById("greeting-box");
@@ -206,3 +205,22 @@ function search() {
   }
 }
 
+//ADD TASKS BUTTON
+
+const addTaskButton = document.getElementById("add-task-button");
+const taskForm = document.getElementById("task-form");
+
+addTaskButton.addEventListener("click", function () {
+  taskForm.style.display = "block";
+});
+
+taskForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const taskName = document.getElementById("task-name").value;
+  // Perform task addition logic here
+
+  // Reset the form and hide it
+  taskForm.style.display = "none";
+  document.getElementById("task-name").value = "";
+});
