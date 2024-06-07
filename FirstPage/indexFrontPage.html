@@ -9,7 +9,7 @@
 <span>
     <h1>ToDoLister</h1>
     <h3>Enter your email below in order to create a new account</h3>
-    <form>
+    <form action="welcome.php" method="post">
         <input class="email" type="email" name="email" placeholder="Email" required>
         <input class="continue" type="submit" value="Continue">
     </form>
@@ -34,10 +34,12 @@
           </div></span>
         <h4>By clicking continue, you agree to our <a href="#" style="color:red; text-decoration-line:none">Terms of Service</a> and <a href="#" style="color:red; text-decoration-line: none;">Privacy Policy</a></h4>
         <h3>Already have an account?</h3>
-    <form >
+    <form action="login.php">
         <input class="username" type="text" name="username" placeholder="Username" required>
+        <label for="remember">Remember me</label>
+        <input type="checkbox" name="remember" id="remember" placeholder="Remember me">
         <input class="password" type="password" name="password" placeholder="Password" required>
-        <input class="signup" type="submit" value="Login">
+        <input id="loginButton" class="signup" type="submit" value="Login">
     </form>
     <script src="scriptFrontPage.js"></script>
 </body>

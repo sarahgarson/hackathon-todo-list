@@ -3,7 +3,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     text-align: center;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .or {
@@ -15,6 +15,7 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     -webkit-appearance: none;
+    appearance: none; /* Add the 'appearance' property */
     background-color: WHITE;
     background-image: none;
     border: 1px solid #747775;
@@ -40,6 +41,7 @@ body {
     width: auto;
     max-width: 400px;
     min-width: min-content;
+    user-select: none;
   }
   
   .gsi-material-button .gsi-material-button-icon {
