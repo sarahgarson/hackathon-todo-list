@@ -23,7 +23,7 @@
     <div class="sidebar">
       <!-- HEADER-->
       <div class="sidebar-header">
-        <h1>Todo List</h1>
+        <h1>ToDoLister</h1>
       </div>
 
       <!-- CONTENT PART-->
@@ -85,7 +85,7 @@
 
     <button id="add-task-button">+</button>
 
-    <div id="task-form" class="task-form">
+    <div id="task-form" class="task-form hidden">
       <h2>Add a New Task</h2>
       <form>
         <input
@@ -95,7 +95,11 @@
           placeholder="add your task here..."
           required
         />
-
+        <!--  input field of type "time" for the user to enter the hour they want to add to their tasks.
+        NO JS WAS USED, ONLY HTML AND CSS-->
+        <label for="task-hour">Select Hour and Date:</label>
+        <input type="time" id="task-hour" name="task-hour" />
+        <input type="date" id="task-date" name="task-date" required />
         <button type="submit">Add Task</button>
       </form>
     </div>

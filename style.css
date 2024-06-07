@@ -235,9 +235,9 @@ used html and css only, no need for JS*/
 .task-form {
   display: none;
   position: fixed;
-  top: 25%;
-  left: 72%;
-  height: 50%;
+  top: 20%;
+  left: 70%;
+  height: 60%;
   background-color: rgba(76, 153, 184, 0.5);
   padding: 5%;
   border: none;
@@ -252,8 +252,8 @@ used html and css only, no need for JS*/
 
 .task-form form {
   display: grid;
-  gap: 50%;
-  margin-bottom: 10%;
+  gap: 20%;
+  margin-bottom: 20%;
 }
 
 .task-form input {
@@ -266,33 +266,17 @@ used html and css only, no need for JS*/
   padding-left: 10%;
 }
 
-.color-dots {
-  display: flex;
-  gap: 20px;
-  padding-left: 20%;
+.task-form label {
+  font-weight: bold;
+  color: white;
 }
 
-.color-dot {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.color-dot:hover {
-  border: 2px solid rgba(89, 88, 88, 0.5);
-}
-
-#red {
-  background-color: red;
-}
-
-#green {
-  background-color: green;
-}
-
-#blue {
-  background-color: blue;
+.task-form input,
+.task-form select {
+  width: 100%;
+  padding: 10px;
+  color: grey;
+  outline: none;
 }
 
 .task-form button {
@@ -303,4 +287,9 @@ used html and css only, no need for JS*/
   border-radius: 5px;
   cursor: pointer;
   font-size: 115%;
+  margin-top: 5%;
+}
+
+.task-form.hidden {
+  display: hidden;
 }
