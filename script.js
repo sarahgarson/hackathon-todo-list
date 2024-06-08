@@ -153,6 +153,17 @@ function getGreeting() {
   }
 }
 
+//adding opacity to the rest of the page when the side bar is toggled on
+function toggleSidebar() {
+  let sidebar = document.getElementById("sidebar");
+  let overlay = document.getElementById("overlay");
+  let content = document.querySelector(".content");
+
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+  content.classList.toggle("shift");
+}
+
 //CURRENT DATE DISPLAY PART:
 
 let currentDateElement = document.getElementById("current-date");
@@ -205,22 +216,180 @@ function search() {
   }
 }
 
-//ADD TASKS BUTTON
+//ADD TASKS BUTTON AND TASKS BOXES
 
-const addTaskButton = document.getElementById("add-task-button");
-const taskForm = document.getElementById("task-form");
+let addTaskButton = document.getElementById("add-task-button");
+let submitTaskButton = document.getElementById("submit-task-button");
+let taskForm = document.getElementById("task-form");
+let addedTasksContainer = document.getElementById("added-tasks-container");
 
-addTaskButton.addEventListener("click", function () {
-  taskForm.style.display = "block";
+// Load tasks from local storage when the page loads
+document.addEventListener("DOMContentLoaded", loadTasksFromLocalStorage);
+
+//when pressed once the form appears, and when pressed again on the button the form disappears. And if a task was added the form also automatically disappears
+addTaskButton.addEventListener("click", () => {
+  taskForm.classList.toggle("open");
+  taskForm.classList.toggle("hidden");
 });
 
-taskForm.addEventListener("submit", function (event) {
-  event.preventDefault();
+// Add a new task when the submit task button is clicked
+submitTaskButton.addEventListener("click", (e) => {
+  e.preventDefault(); // This prevents the default form submission, allowing us to handle the form data with JavaScript.
 
+  //calling our tasks name,hour and date variables:
   const taskName = document.getElementById("task-name").value;
-  // Perform task addition logic here
+  const taskTime = document.getElementById("task-hour").value;
+  const taskDate = document.getElementById("task-date").value;
 
-  // Reset the form and hide it
-  taskForm.style.display = "none";
-  document.getElementById("task-name").value = "";
+  //making sure that all required fields are filled.
+  if (
+    taskName.trim() !== "" &&
+    taskTime.trim() !== "" &&
+    taskDate.trim() !== ""
+  ) {
+    // This creates an object to represent the task,taking all the details from it and making it in one if all the fields were filled
+    const task = {
+      name: taskName,
+      time: taskTime,
+      date: taskDate,
+    };
+
+    //THE TWO BELOW TOGETHER MAKES IT AVAILABLE FOR US TO REFRESH THE PAGE AND NOT LOSE ALL OUR TASKS THAT WERE ADDED BY STORING THEM IN OUR LOCAL STORAGE AND TO THE USER INTERFACE (UI)
+    // This function call adds the task to the user interface.
+    addTaskToUI(task);
+    // Save the task to local storage
+    saveTaskToLocalStorage(task);
+
+    // Clear the input fieldsso whenever the user clicks on the add tasks button (the plus button) all the field will be clear for a new task to be added ;)
+    document.getElementById("task-name").value = "";
+    document.getElementById("task-hour").value = "";
+    document.getElementById("task-date").value = "";
+
+    // Hide the form
+    taskForm.classList.add("hidden");
+  } else {
+    // Ensure all required fields are filled
+    if (!taskName) document.getElementById("task-name").focus();
+    else if (!taskTime) document.getElementById("task-hour").focus();
+    else if (!taskDate) document.getElementById("task-date").focus();
+  }
 });
+
+function addTaskToUI(task) {
+  // Create a container for the task
+  const taskContainer = document.createElement("div");
+  taskContainer.classList.add("task-container"); // a class to the task container for styling.
+
+  /*Each task will be instructured like this:
+
+<div id="added-tasks-container">
+  <!-- Task Container -->
+  <div class="task-container">
+    <!-- Task Info -->
+    <div class="task-info">
+      <!-- Task Name -->
+      <div class="task-name">Task Name Example</div>
+      <!-- Task Time -->
+      <div class="task-hour">10:00 AM</div>
+      <!-- Task Date -->
+      <div class="task-date">2024-06-08</div>
+    </div>
+  </div>
+
+  <!-- Another Task Container -->
+  <div class="task-container">
+    <!-- Task Info -->
+    <div class="task-info">
+      <!-- Task Name -->
+      <div class="task-name">Another Task Example</div>
+      <!-- Task Time -->
+      <div class="task-hour">2:00 PM</div>
+      <!-- Task Date -->
+      <div class="task-date">2024-06-09</div>
+    </div>
+  </div>
+
+  <!-- Additional tasks would be structured similarly -->
+</div>
+*/
+
+  // Create the task information element
+  //This div is created to encapsulate the core information about the task (name, time, and date). By assigning it a class (task-info), you can apply specific styles to ensure consistent formatting.
+  const taskInfo = document.createElement("div");
+  taskInfo.classList.add("task-info");
+
+  // Create the task name element
+  const taskNameElement = document.createElement("div");
+  taskNameElement.innerText = task.name;
+  taskNameElement.classList.add("task-name");
+
+  // Create the task time element
+  const taskTimeElement = document.createElement("div");
+  taskTimeElement.innerText = task.time;
+  taskTimeElement.classList.add("task-hour");
+
+  // Create the task date element
+  const taskDateElement = document.createElement("div");
+  taskDateElement.innerText = task.date;
+  taskDateElement.classList.add("task-date");
+  //----------------------------------
+  // Create a delete button element
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete-button");
+  deleteButton.innerHTML = "×";
+
+  // Add an event listener to the delete button
+  deleteButton.addEventListener("click", () => {
+    // Remove the task container from the UI
+    taskContainer.remove();
+    // Remove the task from local storage
+    removeTaskFromLocalStorage(task);
+  });
+  //-------------------------------------
+  // Append the task details, time, and date to the task info
+  taskInfo.appendChild(taskNameElement);
+
+  taskInfo.appendChild(taskTimeElement);
+  taskInfo.appendChild(taskDateElement);
+
+  // Append the delete button to the task info
+  taskInfo.appendChild(deleteButton);
+
+  // Append the task info to the task container
+  taskContainer.appendChild(taskInfo);
+
+  // Add the task container to the main container
+  addedTasksContainer.appendChild(taskContainer);
+  //----------------------------------
+
+  // Function to remove a task from local storage
+  function removeTaskFromLocalStorage(task) {
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    const index = tasks.findIndex(
+      (t) =>
+        t.name === task.name && t.time === task.time && t.date === task.date
+    );
+    if (index !== -1) {
+      tasks.splice(index, 1);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }
+}
+
+// Function to save a task to local storage
+
+// Retrieves the tasks from local storage. If there are no tasks, it initializes an empty array.
+function saveTaskToLocalStorage(task) {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  //Adds the new task to the tasks array.
+  tasks.push(task);
+  //Saves the updated tasks array back to local storage as a JSON string
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Function to load tasks from local storage
+function loadTasksFromLocalStorage() {
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  //Iterates over each task in the tasks array and adds it to the UI using the addTaskToUI function.
+  tasks.forEach((task) => addTaskToUI(task));
+}
