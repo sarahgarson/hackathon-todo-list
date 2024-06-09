@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/8e3745808b.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Hackathon Project: Page Two, Todo List</title>
+  </head>
+
+  <body>
+    <!-- icon for our sidebar where when you press the sidebar appears our disappears-->
+
+    <div class="sidebar-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+      <!-- HEADER-->
+      <div class="sidebar-header">
+        <h1>ToDoLister</h1>
+      </div>
+
+      <!-- CONTENT PART-->
+      <div class="sidebar-item">
+        <button class="side-bar-button" id="home-btn">Home</button>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- help drop down-->
+
+        <div class="sidebar-item">
+          <div class="dropdown-content">
+            <button id="help" class="side-bar-button">Help</button>
+
+            <!-- I want these two drop-downs to be interactive- meaning when the user presses for an email, it automatically takes creates an email from the users email to send to this specific email and for the phone number to copy the number automatically after clicked on (search about i)-->
+
+            <button id="email">todo-list@help.com</button>
+
+            <button id="phone">+123456789</button>
+          </div>
+        </div>
+
+        <!-- choosing the theme of the page-->
+        <div class="sidebar-item">
+          <div class="dropdown-content">
+            <button class="side-bar-button" id="theme">Theme</button>
+
+            <button id="black">Night Mode</button>
+            <button id="white">Day Mode</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--DATE OF TODAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <div class="content">
+      <!--Automatically changes according to the users devices localization date-->
+
+      <div id="current-date"></div>
+
+      <!-- GREETING BOX - MAINLY WRITTEN ON JS-->
+      <!--automatically changes according to the users devices-->
+      <div id="greeting-box"></div>
+
+      <!-- SEARCH BAR -->
+      <div id="search-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search" />
+
+        <ul id="search-results"></ul>
+        <!--we wrote it so the searchs can be displayed under -->
+      </div>
+
+      <!--TASKS UNDER THE SEARCH BAR BEING ADDED-->
+
+      <div id="added-tasks-container"></div>
+
+      <!-- ADD TASKS BUTTON-->
+
+      <button id="add-task-button">+</button>
+
+      <!-- the div below is for the end of the overlay(content), so the screen opacity changes when the sidebar open, please make sure this is the last div applied in the content-->
+    </div>
+
+    <div id="task-form" class="task-form hidden">
+      <h2>Add a New Task</h2>
+      <form>
+        <input
+          type="text"
+          id="task-name"
+          name="task-name"
+          placeholder="add your task here..."
+          required
+        />
+        <!--  input field of type "time" for the user to enter the hour they want to add to their tasks.
+        NO JS WAS USED, ONLY HTML AND CSS-->
+        <label for="task-hour">Select Hour and Date:</label>
+        <input type="time" id="task-hour" name="task-hour" required />
+        <input type="date" id="task-date" name="task-date" required />
+        <button id="submit-task-button" type="submit">Add Task</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
