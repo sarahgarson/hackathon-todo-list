@@ -1,9 +1,12 @@
 body {
-    background-image: url(background-photo.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-align: center;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 100px;
+  background-image: url(background-photo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 130%;
+  color: rgb(53, 49, 49);
 }
 
 .or {
@@ -118,49 +121,54 @@ body {
   
 
 .email {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 200px;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
+  border: none;  
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
 }
 
 .continue {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
+  border: none;  
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
 }
 
 .username {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 200px;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
 }
 
 .password {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    width: 200px;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 200px;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
 }
 
 .signup {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 2rem;
-    background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: inline-block;
 }

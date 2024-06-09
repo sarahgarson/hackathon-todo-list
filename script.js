@@ -255,6 +255,10 @@ submitTaskButton.addEventListener("click", (e) => {
   const taskName = document.getElementById("task-name").value;
   const taskTime = document.getElementById("task-hour").value;
   const taskDate = document.getElementById("task-date").value;
+//remove if it creates bug
+  let pictureFile = document.getElementById('task-picture').files[0];
+  let audioFile = document.getElementById('task-audio').files[0];
+//remove if it creates bug
 
   //making sure that all required fields are filled.
   if (
@@ -267,6 +271,10 @@ submitTaskButton.addEventListener("click", (e) => {
       name: taskName,
       time: taskTime,
       date: taskDate,
+    //remove if it creates bug
+      picture: pictureFile,
+      audio: audioFile,
+    //remove if it creates bug
     };
 
     //THE TWO BELOW TOGETHER MAKES IT AVAILABLE FOR US TO REFRESH THE PAGE AND NOT LOSE ALL OUR TASKS THAT WERE ADDED BY STORING THEM IN OUR LOCAL STORAGE AND TO THE USER INTERFACE (UI)
@@ -416,4 +424,3 @@ document.getElementById("home-btn").addEventListener("click", function () {
     "indexFrontPage.html";
 });
 
-//FILTER BUTTON
