@@ -314,7 +314,7 @@ used html and css only, no need for JS*/
   outline: none;
 }
 
-.task-form button {
+#submit-task-button {
   padding: 5px 10px;
   background-color: #4098f6;
   color: white;
@@ -323,7 +323,9 @@ used html and css only, no need for JS*/
   cursor: pointer;
   font-size: 115%;
   margin-top: 5%;
+  margin-bottom: -30px;
 }
+
 .task-form.hidden {
   display: hidden;
 }

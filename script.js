@@ -204,16 +204,31 @@ searchInput.addEventListener("keydown", (e) => {
 
 function search() {
   const searchTerm = searchInput.value.toLowerCase();
-  const searchItems = document.getElementsByTagName("li");
+  const searchItems = document.querySelectorAll(".task-name");
+
+  if (searchInput === "") {
+    let allTasks = document.querySelectorAll(".task-container");
+    allTasks.forEach((task) => {
+      task.style.display = "block";
+    });
+  }
 
   for (let i = 0; i < searchItems.length; i++) {
     let itemText = searchItems[i].textContent.toLowerCase();
+    let isVisible =
+      searchItems[i].closest(".task-container").style.display !== "none";
+
     if (itemText.includes(searchTerm)) {
-      searchItems[i].style.display = "block";
+      if (!isVisible) {
+        searchItems[i].closest(".task-container").style.display = "block";
+      }
     } else {
-      searchItems[i].style.display = "none";
+      if (isVisible) {
+        searchItems[i].closest(".task-container").style.display = "none";
+      }
     }
   }
+  // Add functionality to display all tasks when the search input is erased
 }
 
 //ADD TASKS BUTTON AND TASKS BOXES
