@@ -413,7 +413,7 @@ function loadTasksFromLocalStorage() {
 
 document.getElementById("home-btn").addEventListener("click", function () {
   window.location.href =
-    "/Users/sarahgarson/Documents/di_exercises/hackathon-todo-list/FirstPage/indexFrontPage.html";
+    "indexFrontPage.html";
 });
 
 //FILTER BUTTON
