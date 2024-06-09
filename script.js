@@ -408,3 +408,12 @@ function loadTasksFromLocalStorage() {
   //Iterates over each task in the tasks array and adds it to the UI using the addTaskToUI function.
   tasks.forEach((task) => addTaskToUI(task));
 }
+
+//USING BUTTON HOME TO CONNECT IN BTWEEN THE PAGES
+
+document.getElementById("home-btn").addEventListener("click", function () {
+  window.location.href =
+    "/Users/sarahgarson/Documents/di_exercises/hackathon-todo-list/FirstPage/indexFrontPage.html";
+});
+
+//FILTER BUTTON
