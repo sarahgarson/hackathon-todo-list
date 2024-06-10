@@ -415,3 +415,20 @@ used html and css only, no need for JS*/
 .delete-button:hover {
   background-color: rgb(139, 0, 0, 0.5);
 }
+
+/*This is for the styling of the feature that will allow the user to upload picture or audio to the task*/
+.custom-file-input {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-input:hover {
+  background-color: #45a049;
+}

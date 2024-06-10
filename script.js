@@ -256,8 +256,13 @@ submitTaskButton.addEventListener("click", (e) => {
   const taskTime = document.getElementById("task-hour").value;
   const taskDate = document.getElementById("task-date").value;
 //remove if it creates bug
-  let pictureFile = document.getElementById('task-picture').files[0];
-  let audioFile = document.getElementById('task-audio').files[0];
+  document.getElementById('task-picture').addEventListener('change', function() {
+    document.getElementById('task-picture-label').innerText = this.files.length ? this.files[0].name : 'Add Photo';
+  });
+
+  document.getElementById('task-audio').addEventListener('change', function() {
+    document.getElementById('task-audio-label').innerText = this.files.length ? this.files[0].name : 'Add Audio';
+  });
 //remove if it creates bug
 
   //making sure that all required fields are filled.
@@ -271,10 +276,8 @@ submitTaskButton.addEventListener("click", (e) => {
       name: taskName,
       time: taskTime,
       date: taskDate,
-    //remove if it creates bug
-      picture: pictureFile,
-      audio: audioFile,
-    //remove if it creates bug
+      picture: document.getElementById('task-picture').files[0],
+      audio: document.getElementById('task-audio').files[0]  
     };
 
     //THE TWO BELOW TOGETHER MAKES IT AVAILABLE FOR US TO REFRESH THE PAGE AND NOT LOSE ALL OUR TASKS THAT WERE ADDED BY STORING THEM IN OUR LOCAL STORAGE AND TO THE USER INTERFACE (UI)
