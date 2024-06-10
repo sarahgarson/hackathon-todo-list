@@ -45,6 +45,7 @@
 /*but this one is kind og the default color for the page, before the user decides to choose or white or black, this is the color the appears as soon as we open the todo list page*/
 body {
   background-color: rgb(223, 220, 220);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .sidebar {
@@ -259,17 +260,31 @@ used html and css only, no need for JS*/
   background-color: rgb(52, 133, 165, 0.7);
 }
 
+
 .task-form {
   position: fixed;
-  top: 20%;
-  left: 70%;
-  height: 60%;
+  top: 10%;
+  left: 60%;
+  height: auto;
   background-color: rgba(76, 153, 184, 0.5);
   padding: 5%;
   border: none;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 }
+
+/*.container {
+  padding: 20px;
+  overflow: visible;
+}*/
+.task-picture, .task-audio {
+  display: block;
+  width: 100px;
+  height: 40px;
+  margin: 10px 0;
+}
+
 
 .task-form.open {
   transform: translateY(0); /*so the task-form appears when clicked on*/
@@ -287,7 +302,6 @@ used html and css only, no need for JS*/
 
 .task-form form {
   display: grid;
-  gap: 20%;
   margin-bottom: 20%;
 }
 
