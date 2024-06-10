@@ -117,8 +117,17 @@
         <label for="task-hour">Select Hour and Date:</label>
         <input type="time" id="task-hour" name="task-hour" required />
         <input type="date" id="task-date" name="task-date" required />
-        <input type="file" id="task-picture" accept="image/*" />
-        <input type="file" id="task-audio" accept="audio/*" />
+        <input type="file" id="task-picture" accept="image/*" hidden />
+        <label
+          for="task-picture"
+          id="task-picture-label"
+          class="custom-file-input"
+          >Add Photo</label
+        >
+        <input type="file" id="task-audio" accept="audio/*" hidden />
+        <label for="task-audio" id="task-audio-label" class="custom-file-input"
+          >Add Audio</label
+        >
         <button id="submit-task-button" type="submit">Add Task</button>
       </form>
     </div>
