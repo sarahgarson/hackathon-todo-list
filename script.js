@@ -283,7 +283,7 @@ submitTaskButton.addEventListener("click", (e) => {
     // Save the task to local storage
     saveTaskToLocalStorage(task);
 
-    // Clear the input fieldsso whenever the user clicks on the add tasks button (the plus button) all the field will be clear for a new task to be added ;)
+    // Clear the input fields so whenever the user clicks on the add tasks button (the plus button) all the field will be clear for a new task to be added ;)
     document.getElementById("task-name").value = "";
     document.getElementById("task-hour").value = "";
     document.getElementById("task-date").value = "";
@@ -420,7 +420,37 @@ function loadTasksFromLocalStorage() {
 //USING BUTTON HOME TO CONNECT IN BTWEEN THE PAGES
 
 document.getElementById("home-btn").addEventListener("click", function () {
-  window.location.href =
-    "indexFrontPage.html";
+  window.location.href = "indexFrontPage.html";
 });
+
+
+//FILTER BUTTON
+
+document.getElementById("filterButton").addEventListener("click", function () {
+  document.getElementById("datePickerContainer").style.display = "block";
+  document.getElementById("taskDate").focus();
+});
+
+document
+  .getElementById("taskDate")
+  .addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      filterTasks(document.getElementById("taskDate").value);
+    }
+  });
+
+function filterTasks(selectedDate) {
+  const tasks = document.querySelectorAll(".task-container");
+
+  tasks.forEach((task) => {
+    const taskDate = new Date(task.getAttribute("data-date"));
+    const selectedDateObj = new Date(selectedDate);
+
+    if (taskDate.toDateString() === selectedDateObj.toDateString()) {
+      task.style.display = "block";
+    } else {
+      task.style.display = "none";
+    }
+  });
+}
 
