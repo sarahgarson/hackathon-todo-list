@@ -4,33 +4,6 @@
   padding: 0;
 }
 
-/*here I'm adding opacity to the whole screen when the sidebar open, like on youtube(took the idea from there*/
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  display: none;
-  z-index: 999;
-  transition: background-color 0.3s ease;
-}
-
-.content {
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar.active + .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.sidebar.active {
-  left: 0;
-}
-
 /* these two themes below are for the different themes for the whole webpage*/
 .black-theme {
   background-color: rgb(15, 14, 14);
@@ -45,7 +18,7 @@
 /*but this one is kind og the default color for the page, before the user decides to choose or white or black, this is the color the appears as soon as we open the todo list page*/
 body {
   background-color: rgb(223, 220, 220);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .sidebar {
@@ -193,6 +166,8 @@ body {
   position: relative; /* wrote the position and display so my font awesome icon could appear on top of my search bar*/
   display: inline-block;
   width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 #search-input {
@@ -240,6 +215,65 @@ used html and css only, no need for JS*/
   pointer-events: none; /* Prevent the icon from blocking input field interaction */
 }
 
+/*FILTER BUTTON*/
+
+#filterButton {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(97, 97, 97);
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 110%;
+  margin-left: 20%; /*this is to make the button appear to the under the search box*/
+  margin-top: 3%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#dateRangePickerContainer {
+  position: absolute; /*keeps the search input in place and not going down when the filter button is clicked*/
+  background-color: rgba(255, 255, 255);
+  color: grey;
+  padding: 30px 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 50%;
+  margin-left: 20%;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#startDate,
+#endDate {
+  outline: grey;
+  cursor: pointer;
+  display: flex;
+
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#applyDateRangeFilter,
+#clearFilter {
+  border: 1px solid grey;
+  font-size: 105%;
+  cursor: pointer;
+  color: grey;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+  margin-top: 10px;
+}
+
+input[type="date"] {
+  border: 1px solid grey;
+  font-size: 110%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
 /*ADD TASKS BUTTON STYLING*/
 
 #add-task-button {
@@ -260,7 +294,6 @@ used html and css only, no need for JS*/
   background-color: rgb(52, 133, 165, 0.7);
 }
 
-
 .task-form {
   position: fixed;
   top: 10%;
@@ -278,13 +311,13 @@ used html and css only, no need for JS*/
   padding: 20px;
   overflow: visible;
 }*/
-.task-picture, .task-audio {
+.task-picture,
+.task-audio {
   display: block;
   width: 100px;
   height: 40px;
   margin: 10px 0;
 }
-
 
 .task-form.open {
   transform: translateY(0); /*so the task-form appears when clicked on*/

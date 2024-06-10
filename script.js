@@ -255,10 +255,10 @@ submitTaskButton.addEventListener("click", (e) => {
   const taskName = document.getElementById("task-name").value;
   const taskTime = document.getElementById("task-hour").value;
   const taskDate = document.getElementById("task-date").value;
-//remove if it creates bug
-  let pictureFile = document.getElementById('task-picture').files[0];
-  let audioFile = document.getElementById('task-audio').files[0];
-//remove if it creates bug
+  //remove if it creates bug
+  let pictureFile = document.getElementById("task-picture").files[0];
+  let audioFile = document.getElementById("task-audio").files[0];
+  //remove if it creates bug
 
   //making sure that all required fields are filled.
   if (
@@ -271,10 +271,10 @@ submitTaskButton.addEventListener("click", (e) => {
       name: taskName,
       time: taskTime,
       date: taskDate,
-    //remove if it creates bug
+      //remove if it creates bug
       picture: pictureFile,
       audio: audioFile,
-    //remove if it creates bug
+      //remove if it creates bug
     };
 
     //THE TWO BELOW TOGETHER MAKES IT AVAILABLE FOR US TO REFRESH THE PAGE AND NOT LOSE ALL OUR TASKS THAT WERE ADDED BY STORING THEM IN OUR LOCAL STORAGE AND TO THE USER INTERFACE (UI)
@@ -302,6 +302,7 @@ function addTaskToUI(task) {
   // Create a container for the task
   const taskContainer = document.createElement("div");
   taskContainer.classList.add("task-container"); // a class to the task container for styling.
+  taskContainer.setAttribute("data-date", task.date); // the data-date attribute with the task date is for the use of the filter button, so I basically connected the two (added tasks and the filter by date)
 
   /*Each task will be instructured like this:
 
@@ -388,7 +389,7 @@ function addTaskToUI(task) {
   // Function to remove a task from local storage
   function removeTaskFromLocalStorage(task) {
     let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    const index = tasks.findIndex(
+    let index = tasks.findIndex(
       (t) =>
         t.name === task.name && t.time === task.time && t.date === task.date
     );
@@ -423,30 +424,53 @@ document.getElementById("home-btn").addEventListener("click", function () {
   window.location.href = "indexFrontPage.html";
 });
 
-
 //FILTER BUTTON
 
-document.getElementById("filterButton").addEventListener("click", function () {
-  document.getElementById("datePickerContainer").style.display = "block";
-  document.getElementById("taskDate").focus();
+//calling all the variables for the filter button, the date container and the clear button:
+let filterButton = document.getElementById("filterButton");
+let dateRangePickerContainer = document.getElementById(
+  "dateRangePickerContainer"
+);
+let clearFilterButton = document.getElementById("clearFilter");
+
+// toggles the visibility of the dateRangePickerContainer when the filterButton is clicked:
+filterButton.addEventListener("click", function () {
+  //The getBoundingClientRect() method returns a DOMRect object providing information about the element's position and dimensions:
+  let buttonRect = filterButton.getBoundingClientRect();
+  dateRangePickerContainer.style.display =
+    //The ternary operator ? : is used to check if the current display style is none. If it is none, it sets the display style to block, making the container visible. If it is not none, it sets the display style to none, hiding the container.
+    dateRangePickerContainer.style.display === "none" ? "block" : "none";
+
+  //sets focus on the start date input field
+  if (dateRangePickerContainer.style.display === "block") {
+    document.getElementById("startDate").focus();
+  }
 });
 
+//gets the start and end dates from the input fields from the applyDateRangeFilter button created in the html file, converts them to Date objects, and then calls the filterTasksByDateRange function:
 document
-  .getElementById("taskDate")
-  .addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      filterTasks(document.getElementById("taskDate").value);
-    }
+  .getElementById("applyDateRangeFilter")
+  .addEventListener("click", function () {
+    let startDate = new Date(document.getElementById("startDate").value);
+    let endDate = new Date(document.getElementById("endDate").value);
+    filterTasksByDateRange(startDate, endDate);
+    dateRangePickerContainer.style.display = "none";
   });
 
-function filterTasks(selectedDate) {
-  const tasks = document.querySelectorAll(".task-container");
+//resets the filter and show all tasks
+clearFilterButton.addEventListener("click", function () {
+  clearFilter();
+});
+
+//This function filters the tasks based on the provided start and end dates. It selects all task elements (task-container) and checks if the task's date (retrieved from the data-date attribute) falls within the specified date range. Tasks within the range are displayed; others are hidden.
+function filterTasksByDateRange(startDate, endDate) {
+  let tasks = document.querySelectorAll(".task-container");
 
   tasks.forEach((task) => {
-    const taskDate = new Date(task.getAttribute("data-date"));
-    const selectedDateObj = new Date(selectedDate);
+    //attribute created within the funtion addTaskToUI in the tasks part of the code
+    let taskDate = new Date(task.getAttribute("data-date"));
 
-    if (taskDate.toDateString() === selectedDateObj.toDateString()) {
+    if (taskDate >= startDate && taskDate <= endDate) {
       task.style.display = "block";
     } else {
       task.style.display = "none";
@@ -454,3 +478,11 @@ function filterTasks(selectedDate) {
   });
 }
 
+//calling the function created above:
+function clearFilter() {
+  let tasks = document.querySelectorAll(".task-container");
+
+  tasks.forEach((task) => {
+    task.style.display = "block";
+  });
+}
