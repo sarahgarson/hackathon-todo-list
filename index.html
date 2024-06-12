@@ -12,6 +12,8 @@
   </head>
 
   <body>
+    <!-- SIDEBAR PART-->
+
     <!-- icon for our sidebar where when you press the sidebar appears our disappears-->
 
     <div class="sidebar-icon">
@@ -26,7 +28,6 @@
         <h1>ToDoLister</h1>
       </div>
 
-      <!-- CONTENT PART-->
       <div class="sidebar-item">
         <button class="side-bar-button" id="home-btn">Home</button>
       </div>
@@ -58,7 +59,9 @@
       </div>
     </div>
 
-    <!--DATE OF TODAY-->
+    <!-------------------------------------------------------->
+
+    <!--DATE OF TODAY PART-->
     <div class="overlay" id="overlay"></div>
 
     <div class="content">
@@ -66,9 +69,13 @@
 
       <div id="current-date"></div>
 
+      <!-------------------------------------------------------->
+
       <!-- GREETING BOX - MAINLY WRITTEN ON JS-->
       <!--automatically changes according to the users devices-->
       <div id="greeting-box"></div>
+
+      <!-------------------------------------------------------->
 
       <!-- SEARCH BAR -->
       <div id="search-container">
@@ -76,11 +83,15 @@
         <input type="text" id="search-input" placeholder="Search" />
 
         <ul id="search-results"></ul>
-        <!--we wrote it so the searchs can be displayed under -->
+        <!--we wrote it so the searches can be displayed under it -->
+
+        <!-------------------------------------------------------->
+
         <!-- FILTER BUTTON -->
         <div class="filter-container">
           <button id="filterButton">Filter by Date</button>
           <div id="dateRangePickerContainer" style="display: none">
+            <span id="closeDatePicker" class="close-button">&times;</span>
             <label for="startDate">Start Date:</label>
             <input type="date" id="startDate" />
             <label for="endDate">End Date:</label>
@@ -91,11 +102,15 @@
         </div>
       </div>
 
+      <!-------------------------------------------------------->
+
       <!--TASKS UNDER THE SEARCH BAR BEING ADDED-->
 
       <div id="added-tasks-container"></div>
 
-      <!-- ADD TASKS BUTTON-->
+      <!-------------------------------------------------------->
+
+      <!-- ADD TASKS BUTTON AND FORM-->
 
       <button id="add-task-button">+</button>
 
@@ -117,20 +132,11 @@
         <label for="task-hour">Select Hour and Date:</label>
         <input type="time" id="task-hour" name="task-hour" required />
         <input type="date" id="task-date" name="task-date" required />
-        <input type="file" id="task-picture" accept="image/*" hidden />
-        <label
-          for="task-picture"
-          id="task-picture-label"
-          class="custom-file-input"
-          >Add Photo</label
-        >
-        <input type="file" id="task-audio" accept="audio/*" hidden />
-        <label for="task-audio" id="task-audio-label" class="custom-file-input"
-          >Add Audio</label
-        >
         <button id="submit-task-button" type="submit">Add Task</button>
       </form>
     </div>
+
+    <!-------------------------------------------------------->
 
     <script src="script.js"></script>
   </body>

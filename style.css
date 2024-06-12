@@ -243,6 +243,7 @@ used html and css only, no need for JS*/
   margin-left: 20%;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Ensures that the dateRangePickerContainer appears on top of the tasks under the search bar*/
 }
 
 #startDate,
@@ -250,8 +251,7 @@ used html and css only, no need for JS*/
   outline: grey;
   cursor: pointer;
   display: flex;
-
-  justify-content: space-between;
+  justify-content: space-between; /* Distributes the space between the startDate and endDate evenly */
   margin-bottom: 10px;
 }
 
@@ -272,6 +272,21 @@ input[type="date"] {
   font-size: 110%;
   padding: 10px;
   margin-top: 10px;
+}
+
+/* close button inside the dateRangePickerContainer */
+.close-button {
+  position: absolute; /*so I could place it to the right side*/
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: #aaa;
+}
+
+.close-button:hover {
+  color: #000;
 }
 
 /*ADD TASKS BUTTON STYLING*/
@@ -297,7 +312,7 @@ input[type="date"] {
 .task-form {
   position: fixed;
   top: 10%;
-  left: 60%;
+  left: 70%;
   height: auto;
   background-color: rgba(76, 153, 184, 0.5);
   padding: 5%;
@@ -305,18 +320,6 @@ input[type="date"] {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: visible;
-}
-
-/*.container {
-  padding: 20px;
-  overflow: visible;
-}*/
-.task-picture,
-.task-audio {
-  display: block;
-  width: 100px;
-  height: 40px;
-  margin: 10px 0;
 }
 
 .task-form.open {
@@ -346,11 +349,13 @@ input[type="date"] {
   font-size: 105%;
   outline: none;
   padding-left: 10%;
+  margin-bottom: 15px;
 }
 
 .task-form label {
   font-weight: bold;
   color: white;
+  margin-bottom: 10px;
 }
 
 .task-form input,
@@ -389,25 +394,22 @@ input[type="date"] {
 }
 
 .task-container {
+  position: relative;
   background-color: rgb(255, 255, 255, 0.8);
   border: none;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 5%;
   padding: 15px;
-  display: flex; /*added this here so the task container would be resizeble according to the content inside*/
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
 }
 
 .task-info {
-  /*display: flex; adding display flex styling below made the content appear next to each other and not one on top of the other
-  align-items: center;
-  justify-content: space-between;*/
-
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  /*display: flex;
+  flex-direction: column;
+  flex-grow: 1;*/
 }
 
 .task {
@@ -418,17 +420,23 @@ input[type="date"] {
 .task-hour {
   font-size: 115%;
   color: #888;
+  margin-top: 5%;
 }
 
 .task-date {
   font-size: 110%;
   color: #666;
-  margin-left: auto;
+  margin-left: 80px;
+  position: absolute;
+  top: 35%;
+  right: 10%;
+  margin-top: 5%;
 }
 
 .task-name {
   color: rgb(61, 132, 255);
   font-size: 130%;
+  word-wrap: break-word; /* Allow long task names to wrap within the container */
 }
 
 /*delete button in the task*/
@@ -442,26 +450,13 @@ input[type="date"] {
   width: 25px;
   height: 25px;
   border-radius: 100%;
-  margin-left: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .delete-button:hover {
   background-color: rgb(139, 0, 0, 0.5);
 }
 
-/*This is for the styling of the feature that will allow the user to upload picture or audio to the task*/
-.custom-file-input {
-  display: inline-block;
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-
-.custom-file-input:hover {
-  background-color: #45a049;
-}
+/*styling for the check box to make sure it lines through the task when clicked on*/

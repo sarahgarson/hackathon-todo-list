@@ -1,4 +1,4 @@
-//SIDEBAR NAV PART OF THE CODE:
+// 1. SIDEBAR NAV PART OF THE CODE:
 
 //side bar 3 lines (created with span on out html file), if clicked on, the sidebar appears:
 
@@ -97,7 +97,7 @@ themeButton.addEventListener("click", function () {
   closeHelpButton();
 });
 
-//making funtions so the user can click on the email or phone number and automatically have them copied:
+//making functions so the user can click on the email or phone number and automatically have them copied:
 
 //had added onclick in the html file and was having the alert popping twice, so I deleted it and left only this here in js
 
@@ -129,7 +129,9 @@ white.addEventListener("click", () => {
   document.body.classList.add("white-theme");
 });
 
-//GREETING BOX PART OF THE CODE:
+//---------------------------------------------------------------
+
+// 2. GREETING BOX PART OF THE CODE:
 
 const greetingBox = document.getElementById("greeting-box");
 greetingBox.textContent = getGreeting();
@@ -153,18 +155,9 @@ function getGreeting() {
   }
 }
 
-//adding opacity to the rest of the page when the side bar is toggled on
-function toggleSidebar() {
-  let sidebar = document.getElementById("sidebar");
-  let overlay = document.getElementById("overlay");
-  let content = document.querySelector(".content");
+//---------------------------------------------------------------
 
-  sidebar.classList.toggle("active");
-  overlay.classList.toggle("active");
-  content.classList.toggle("shift");
-}
-
-//CURRENT DATE DISPLAY PART:
+// 3. CURRENT DATE DISPLAY PART:
 
 let currentDateElement = document.getElementById("current-date");
 
@@ -182,7 +175,9 @@ function updateCurrentDate() {
 
 updateCurrentDate();
 
-//search bar part of the code:
+//---------------------------------------------------------------
+
+//4. SEARCH BAR PART:
 
 let searchInput = document.getElementById("search-input");
 let searchResults = document.getElementById("search-results");
@@ -231,7 +226,9 @@ function search() {
   // Add functionality to display all tasks when the search input is erased
 }
 
-//ADD TASKS BUTTON AND TASKS BOXES
+//---------------------------------------------------------------
+
+//5. ADD TASKS BUTTON AND TASKS BOXES
 
 let addTaskButton = document.getElementById("add-task-button");
 let submitTaskButton = document.getElementById("submit-task-button");
@@ -255,22 +252,6 @@ submitTaskButton.addEventListener("click", (e) => {
   const taskName = document.getElementById("task-name").value;
   const taskTime = document.getElementById("task-hour").value;
   const taskDate = document.getElementById("task-date").value;
-  //remove if it creates bug
-  document
-    .getElementById("task-picture")
-    .addEventListener("change", function () {
-      document.getElementById("task-picture-label").innerText = this.files
-        .length
-        ? this.files[0].name
-        : "Add Photo";
-    });
-
-  document.getElementById("task-audio").addEventListener("change", function () {
-    document.getElementById("task-audio-label").innerText = this.files.length
-      ? this.files[0].name
-      : "Add Audio";
-  });
-  //remove if it creates bug
 
   //making sure that all required fields are filled.
   if (
@@ -283,8 +264,6 @@ submitTaskButton.addEventListener("click", (e) => {
       name: taskName,
       time: taskTime,
       date: taskDate,
-      picture: document.getElementById("task-picture").files[0],
-      audio: document.getElementById("task-audio").files[0],
     };
 
     //THE TWO BELOW TOGETHER MAKES IT AVAILABLE FOR US TO REFRESH THE PAGE AND NOT LOSE ALL OUR TASKS THAT WERE ADDED BY STORING THEM IN OUR LOCAL STORAGE AND TO THE USER INTERFACE (UI)
@@ -308,6 +287,7 @@ submitTaskButton.addEventListener("click", (e) => {
   }
 });
 
+// function is responsible for adding a task to the user interface:
 function addTaskToUI(task) {
   // Create a container for the task
   const taskContainer = document.createElement("div");
@@ -352,6 +332,18 @@ function addTaskToUI(task) {
   const taskInfo = document.createElement("div");
   taskInfo.classList.add("task-info");
 
+  // Create checkbox element
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.classList.add(`checkbox`);
+  //so when clicked a line appears on top of the task
+  checkbox.addEventListener("change", function () {
+    taskNameElement.style.textDecoration = this.checked
+      ? "line-through"
+      : "none";
+    saveTaskToLocalStorage(task);
+  });
+
   // Create the task name element
   const taskNameElement = document.createElement("div");
   taskNameElement.innerText = task.name;
@@ -362,10 +354,17 @@ function addTaskToUI(task) {
   taskTimeElement.innerText = task.time;
   taskTimeElement.classList.add("task-hour");
 
-  // Create the task date element
+  // Create the task date element and format it to day/month/year
   const taskDateElement = document.createElement("div");
-  taskDateElement.innerText = task.date;
+  const date = new Date(task.date);
+  const formattedDate = date.toLocaleString("en-IL", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+  taskDateElement.innerText = formattedDate;
   taskDateElement.classList.add("task-date");
+
   //----------------------------------
   // Create a delete button element
   const deleteButton = document.createElement("button");
@@ -379,12 +378,15 @@ function addTaskToUI(task) {
     // Remove the task from local storage
     removeTaskFromLocalStorage(task);
   });
-  //-------------------------------------
+
   // Append the task details, time, and date to the task info
   taskInfo.appendChild(taskNameElement);
 
   taskInfo.appendChild(taskTimeElement);
   taskInfo.appendChild(taskDateElement);
+
+  //Append the checkbox
+  taskContainer.appendChild(checkbox);
 
   // Append the delete button to the task info
   taskInfo.appendChild(deleteButton);
@@ -394,7 +396,6 @@ function addTaskToUI(task) {
 
   // Add the task container to the main container
   addedTasksContainer.appendChild(taskContainer);
-  //----------------------------------
 
   // Function to remove a task from local storage
   function removeTaskFromLocalStorage(task) {
@@ -414,27 +415,37 @@ function addTaskToUI(task) {
 
 // Retrieves the tasks from local storage. If there are no tasks, it initializes an empty array.
 function saveTaskToLocalStorage(task) {
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  //Adds the new task to the tasks array.
-  tasks.push(task);
-  //Saves the updated tasks array back to local storage as a JSON string
+  let tasks = [];
+  document.querySelectorAll(".task-container").forEach((container) => {
+    let task = {
+      name: container.querySelector(".task-name").innerText,
+      time: container.querySelector(".task-hour").innerText,
+      date: container.getAttribute("data-date"),
+      checked: container.querySelector(".checkbox").checked,
+    };
+    tasks.push(task);
+  });
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// Function to load tasks from local storage
+// Function to load tasks from local storage when page is refreshed
 function loadTasksFromLocalStorage() {
   let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
   //Iterates over each task in the tasks array and adds it to the UI using the addTaskToUI function.
   tasks.forEach((task) => addTaskToUI(task));
 }
 
-//USING BUTTON HOME TO CONNECT IN BTWEEN THE PAGES
+//---------------------------------------------------------------
+
+//6. USING BUTTON HOME TO CONNECT IN BTWEEN THE PAGES
 
 document.getElementById("home-btn").addEventListener("click", function () {
   window.location.href = "indexFrontPage.html";
 });
 
-//FILTER BUTTON
+//---------------------------------------------------------------
+
+//7. FILTER BUTTON
 
 //calling all the variables for the filter button, the date container and the clear button:
 let filterButton = document.getElementById("filterButton");
@@ -442,6 +453,7 @@ let dateRangePickerContainer = document.getElementById(
   "dateRangePickerContainer"
 );
 let clearFilterButton = document.getElementById("clearFilter");
+const closeDatePicker = document.getElementById("closeDatePicker");
 
 // toggles the visibility of the dateRangePickerContainer when the filterButton is clicked:
 filterButton.addEventListener("click", function () {
@@ -472,12 +484,17 @@ clearFilterButton.addEventListener("click", function () {
   clearFilter();
 });
 
+//so the little x button on the top right closes the whole datRangePickerContainer when clicked on
+closeDatePicker.addEventListener("click", function () {
+  dateRangePickerContainer.style.display = "none";
+});
+
 //This function filters the tasks based on the provided start and end dates. It selects all task elements (task-container) and checks if the task's date (retrieved from the data-date attribute) falls within the specified date range. Tasks within the range are displayed; others are hidden.
 function filterTasksByDateRange(startDate, endDate) {
   let tasks = document.querySelectorAll(".task-container");
 
   tasks.forEach((task) => {
-    //attribute created within the funtion addTaskToUI in the tasks part of the code
+    //attribute created within the function addTaskToUI in the tasks part of the code
     let taskDate = new Date(task.getAttribute("data-date"));
 
     if (taskDate >= startDate && taskDate <= endDate) {
