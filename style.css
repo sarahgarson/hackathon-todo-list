@@ -33,6 +33,7 @@ body {
 
 .sidebar.open {
   left: 0; /* Show when open */
+  z-index: 1000; /
 }
 
 .sidebar-icon {
@@ -67,7 +68,7 @@ body {
   color: whitesmoke;
   border: 0px;
   border-radius: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
   margin-left: 9%;
   width: 200px;
 }
@@ -90,7 +91,7 @@ body {
   top: 120%;
   left: 100%; /*also this line was updated so the dropdown apear to the right side */
   display: none;
-  background-color: rgb(0, 0, 0, 0.6);
+  background-color: rgb(0, 0, 0, 0.8);
   padding: 10px;
   color: white;
   border: 0px;
@@ -106,7 +107,7 @@ body {
   top: 200%;
   left: 100%; /*also this line was updated so the dropdown apear to the right side */
   display: none;
-  background-color: rgb(0, 0, 0, 0.6);
+  background-color: rgb(0, 0, 0, 0.8);
   padding: 10px;
   color: white;
   border: 0px;
@@ -122,7 +123,7 @@ body {
   top: 200%;
   left: 100%; /*also this line was updated so the dropdown apear to the right side */
   display: none;
-  background-color: rgb(255, 255, 255, 0.6);
+  background-color: rgb(255, 255, 255, 0.8);
   padding: 10px;
   color: black;
   border: 0px;
