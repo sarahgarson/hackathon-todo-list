@@ -7,4 +7,4 @@ While there already exists apps to create todo lists, this one offers more conve
 
 In order to run the app, a user would need to register and then login with a username and password. This would mean it is completely browser based and does not need to be installed on a computer. Anyone with access to a browser would be able to run it. 
 
-Contributers: Sarah Garson and Zachary Premack
+Contributors: Sarah Garson and Zachary Premack
